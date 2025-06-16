@@ -1,0 +1,90 @@
+/* style.css */
+
+body {
+  margin: 0;
+  background-color: #1e1e1e;
+  font-family: monospace;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prompt {
+  display: inline-block;
+  width: 3ch; /* espace réservé équivalent à la taille du prompt '>_' */
+  margin-right: 10px;
+  color: #00ff00;
+}
+
+.portfolio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff; /* à ajuster si besoin */
+}
+
+.terminal-window {
+  background-color: #2e2e2e;
+  width: 80vw;
+  height: 70vh;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.terminal-header {
+  background-color: #1a1a1a;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.btn.red    { background-color: #ff5f56; }
+.btn.yellow { background-color: #ffbd2e; }
+.btn.green  { background-color: #27c93f; }
+
+.terminal-body {
+  padding: 20px;
+  color: #00ff00;
+  background-color: #1e1e1e;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  white-space: pre-wrap;
+}
+
+.prompt {
+  margin-right: 10px;
+  color: #00ff00;
+}
+
+.input {
+  background: none;
+  border: none;
+  color: #00ff00;
+  outline: none;
+  font-family: inherit;
+  font-size: 1em;
+  width: 100%;
+}
