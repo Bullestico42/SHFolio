@@ -4,7 +4,7 @@ body {
   margin: 0;
   background-color: #2e2e2e;
   font-family: monospace;
-  height: 100vh;
+  height: 88vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,8 +26,8 @@ body {
 }
 .portfolio-header {
   text-align: center;
-  margin-bottom: 20px;
-  color: #fff; /* à ajuster si besoin */
+  margin-bottom: 40px;
+  color: #fff;
 }
 
 .terminal-window {
@@ -87,4 +87,60 @@ body {
   font-family: inherit;
   font-size: 1em;
   width: 100%;
+}
+
+/*MENU*/
+
+.menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #2e2e2e;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: monospace;
+  z-index: 999;
+}
+
+.menu-button {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.menu-button:hover {
+  background-color: #555;
+}
+
+.menu-content {
+  display: none;
+  flex-direction: column;
+  background-color: #333;
+  animation: slideDown 0.4s ease forwards;
+}
+
+.menu-content a {
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-top: 1px solid #444;
+}
+
+.menu-content a:hover {
+  background-color: #444;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

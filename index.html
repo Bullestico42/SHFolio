@@ -12,19 +12,43 @@
       color: #00ff00;
       font-family: monospace;
     }
+
     .empty-prompt {
       visibility: hidden;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
     }
   </style>
 </head>
 <body>
+  <div class="menu">
+    <button class="menu-button" onclick="toggleMenu()">☰</button>
+    <div class="menu-content" id="dropdown">
+      <a href="index.html">Accueil</a>
+      <a href="https://github.com/Bullestico42" target="_blank">GitHub</a>
+      <a href="projects.html">Projects</a>
+    </div>
+  </div>
   <div class="portfolio-container">
-    <header class="portfolio-header">
+    <header class="portfolio-header fade-in-up" style="animation-delay: 0.2s;">
       <h1>Welcome on my ShellFolio</h1>
       <p>Try 'help' to show commands</p>
     </header>
-
-    <div class="terminal-window">
+    <div class="terminal-window fade-in-up" style="animation-delay: 0.7s;">
       <div class="terminal-header">
         <div class="btn red"></div>
         <div class="btn yellow"></div>
@@ -38,7 +62,12 @@
       </div>
     </div>
   </div>
-
+  <script>
+    function toggleMenu() {
+      const dropdown = document.getElementById('dropdown');
+      dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const promptSymbol = '>_';
@@ -47,8 +76,9 @@
       const terminal = document.getElementById('terminal');
       const inputLine = document.querySelector('.input-line');
       terminalWindow.addEventListener('click', () => input.focus());
+
       const commands = {
-        help: () => 'Available commands\n\n-help: for help.\n-env: list of environnement variable\n-date: show the actual date\n-echo: display a line of text\n-troll: a fun mini script',
+        help: () => 'Available commands\n\n-help: for help.\n-env: list of environnement variable\n-projects: my beautiful projects <3\n-date: show the actual date\n-echo: display a line of text\n-troll: a fun mini script',
         env: () => 'Portfolio interactif - version 1.1',
         date: () => new Date().toLocaleString(),
         echo: args => args.join(' '),
@@ -65,8 +95,8 @@
           return `Downloading: ${file}`;
         },
         projects: () => {
-            window.open('https://github.com/Bullestico42?tab=repositories', '_blank');
-            return 'Opening...';
+          window.open('https://github.com/Bullestico42?tab=repositories', '_blank');
+          return 'Opening...';
         },
         clear: () => {
           terminal.innerHTML = '';
@@ -74,7 +104,8 @@
           return null;
         },
         singe: () => '      _\n     { ". \n|_   /\\ \n  |_|  |'
-    };
+      };
+
       input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
           const value = input.value.trim();
@@ -89,13 +120,13 @@
             cmdLine.append(promptSpan, textSpan);
             terminal.insertBefore(cmdLine, inputLine);
 
-            // Exécution
             const parts = value.split(' ');
             const cmd = parts[0];
             const args = parts.slice(1);
             let output;
             if (commands[cmd]) output = commands[cmd](args);
             else output = `${cmd}: command not found`;
+
             const respLine = document.createElement('div');
             respLine.classList.add('line');
             const emptyPrompt = document.createElement('span');
