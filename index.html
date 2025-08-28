@@ -2,146 +2,20 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Terminal Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .prompt {
-      display: inline-block;
-      margin-right: 10px;
-      color: #00ff00;
-      font-family: monospace;
-    }
-
-    .empty-prompt {
-      visibility: hidden;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in-up {
-      opacity: 0;
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-  </style>
+  <title>Téléchargement de fun.sh</title>
 </head>
 <body>
-  <div class="menu">
-    <button class="menu-button" onclick="toggleMenu()">☰</button>
-    <div class="menu-content" id="dropdown">
-      <a href="index.html">Accueil</a>
-      <a href="https://github.com/Bullestico42" target="_blank">GitHub</a>
-      <a href="projects.html">Projects</a>
-    </div>
-  </div>
-  <div class="portfolio-container">
-    <header class="portfolio-header fade-in-up" style="animation-delay: 0.2s;">
-      <h1>Welcome on my ShellFolio</h1>
-      <p>Try 'help' to show commands</p>
-    </header>
-    <div class="terminal-window fade-in-up" style="animation-delay: 0.7s;">
-      <div class="terminal-header">
-        <div class="btn red"></div>
-        <div class="btn yellow"></div>
-        <div class="btn green"></div>
-      </div>
-      <div class="terminal-body" id="terminal">
-        <div class="line input-line">
-          <span class="prompt">&gt;_</span>
-          <input type="text" class="input" autofocus />
-        </div>
-      </div>
-    </div>
-  </div>
+  <p>Votre téléchargement devrait commencer automatiquement…</p>
+  <p>Sinon <a id="manual" href="../fun.sh" download="fun.sh">cliquez ici</a>.</p>
+
   <script>
-    function toggleMenu() {
-      const dropdown = document.getElementById('dropdown');
-      dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
-    }
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const promptSymbol = '>_';
-      const terminalWindow = document.querySelector('.terminal-window');
-      const input = document.querySelector('.input');
-      const terminal = document.getElementById('terminal');
-      const inputLine = document.querySelector('.input-line');
-      terminalWindow.addEventListener('click', () => input.focus());
-
-      const commands = {
-        help: () => 'Available commands\n\n-help: for help.\n-env: list of environnement variable\n-projects: my beautiful projects <3\n-date: show the actual date\n-echo: display a line of text\n-troll: a fun mini script',
-        env: () => 'Portfolio interactif - version 1.1',
-        date: () => new Date().toLocaleString(),
-        echo: args => args.join(' '),
-        ls: () => 'Nothing here...',
-        cd: () => 'cd: error did you mean \'cd\' ?',
-        troll: args => {
-          const file = args[0] || 'fun.sh';
-          const link = document.createElement('a');
-          link.href = file;
-          link.download = file;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          return `Downloading: ${file}`;
-        },
-        projects: () => {
-          window.open('https://github.com/Bullestico42?tab=repositories', '_blank');
-          return 'Opening...';
-        },
-        clear: () => {
-          terminal.innerHTML = '';
-          terminal.appendChild(inputLine);
-          return null;
-        },
-        singe: () => '      _\n     { ". \n|_   /\\ \n  |_|  |'
-      };
-
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          const value = input.value.trim();
-          if (value) {
-            const cmdLine = document.createElement('div');
-            cmdLine.classList.add('line');
-            const promptSpan = document.createElement('span');
-            promptSpan.classList.add('prompt');
-            promptSpan.textContent = promptSymbol;
-            const textSpan = document.createElement('span');
-            textSpan.textContent = ' ' + value;
-            cmdLine.append(promptSpan, textSpan);
-            terminal.insertBefore(cmdLine, inputLine);
-
-            const parts = value.split(' ');
-            const cmd = parts[0];
-            const args = parts.slice(1);
-            let output;
-            if (commands[cmd]) output = commands[cmd](args);
-            else output = `${cmd}: command not found`;
-
-            const respLine = document.createElement('div');
-            respLine.classList.add('line');
-            const emptyPrompt = document.createElement('span');
-            emptyPrompt.classList.add('prompt', 'empty-prompt');
-            emptyPrompt.textContent = promptSymbol;
-            const respSpan = document.createElement('span');
-            respSpan.textContent = output;
-            respLine.append(emptyPrompt, respSpan);
-            terminal.insertBefore(respLine, inputLine);
-
-            terminal.scrollTop = terminal.scrollHeight;
-          }
-          input.value = '';
-        }
-      });
+    window.addEventListener("load", () => {
+      const link = document.createElement("a");
+      link.href = "../fun.sh";      // chemin vers ton script
+      link.download = "fun.sh";     // nom proposé
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     });
   </script>
 </body>
